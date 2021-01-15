@@ -20,7 +20,7 @@
 
 - name: postfix is configured
   template:
-    src: main.cf.j2
+    src: main.cf-{{ ansible_os_family }}.j2
     dest: /etc/postfix/main.cf
     mode: '644'
     backup: true

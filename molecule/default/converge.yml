@@ -10,6 +10,8 @@
 
   roles:
 
-  - role: mafalb.postfix.postfix
+  - role: mafalb.postfix.server
+    postfix_cfg:
+      inet_interfaces: all
 
 ...

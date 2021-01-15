@@ -10,8 +10,23 @@
 
   tasks:
 
-  - name: Example assertion
-    assert:
-      that: true
+  - name: postfix is listening on loopback interface
+    wait_for:
+      host: localhost
+      port: 25
+      timeout: 5
+
+  - name: postfix is listening on normal interface
+    wait_for:
+      host: "{{ ansible_hostname }}"
+      port: 25
+      timeout: 5
+
+  - name: postfix is reachable over network
+    delegate_to: ci-proxy
+    wait_for:
+      host: "{{ ansible_hostname }}"
+      port: 25
+      timeout: 5
 
 ...

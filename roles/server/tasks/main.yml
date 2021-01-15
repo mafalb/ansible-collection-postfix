@@ -1,0 +1,35 @@
+# vim: set ft=yaml ts=2 expandtab:
+---
+
+- name: include OS specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+  - "{{ ansible_os_family }}.yml"
+
+- debug: var=postfix_cfg.inet_interfaces|type_debug
+
+- name: assertions
+  assert:
+    that:
+    - postfix_cfg.inet_interfaces|type_debug == 'list' or
+      postfix_cfg.inet_interfaces|type_debug == 'AnsibleUnicode'
+
+- name: postfix is present
+  package:
+    name: postfix
+
+- name: postfix is configured
+  template:
+    src: main.cf.j2
+    dest: /etc/postfix/main.cf
+    mode: '644'
+  notify: restart postfix
+
+- name: postfix is running
+  service:
+    name: postfix
+    state: started
+    enabled: true
+  register: _postfix_has_started
+
+...

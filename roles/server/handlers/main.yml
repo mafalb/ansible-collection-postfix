@@ -1,0 +1,10 @@
+# vim: set ft=yaml ts=2 expandtab:
+---
+
+- name: restart postfix
+  service:
+    name: postfix
+    state: restarted
+  when: not _postfix_has_started.changed
+
+...

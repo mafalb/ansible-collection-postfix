@@ -11,7 +11,7 @@ Ansible collection mafalb.postfix
 
 ## Roles
 
-### [mafalb.postfix.server](roles/server }}/README.md)
+### [mafalb.postfix.server](roles/server/README.md)
 
 ## License
 

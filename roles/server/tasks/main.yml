@@ -23,6 +23,7 @@
     src: main.cf.j2
     dest: /etc/postfix/main.cf
     mode: '644'
+    backup: true
   notify: restart postfix
 
 - name: postfix is running

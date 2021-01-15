@@ -12,6 +12,6 @@
 
   - name: Example assertion
     assert:
-      that: false
+      that: true
 
 ...
